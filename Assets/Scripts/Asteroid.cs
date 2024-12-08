@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
+    //Comentario prueba
     public GameObject explosion;
     public float force = -500f;
     public int hp = 100;

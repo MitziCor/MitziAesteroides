@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Mishi\\Desktop\\MDS\\PracticasGit\\MitziAesteroides\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{39CF71D8-D3FC-6A49-5CB1-ED27CFB215B0}|Assembly-CSharp.csproj|c:\\users\\mishi\\desktop\\mds\\practicasgit\\mitziaesteroides\\assets\\scripts\\asteroid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39CF71D8-D3FC-6A49-5CB1-ED27CFB215B0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\asteroid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Asteroid.cs",
+              "DocumentMoniker": "C:\\Users\\Mishi\\Desktop\\MDS\\PracticasGit\\MitziAesteroides\\Assets\\Scripts\\Asteroid.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Asteroid.cs",
+              "ToolTip": "C:\\Users\\Mishi\\Desktop\\MDS\\PracticasGit\\MitziAesteroides\\Assets\\Scripts\\Asteroid.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Asteroid.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-08T21:50:28.679Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
