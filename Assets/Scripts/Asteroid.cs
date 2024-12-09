@@ -6,7 +6,7 @@ public class Asteroid : MonoBehaviour
 {
     //Comentario prueba
     public GameObject explosion;
-    public float force = -500f;
+    public float force = -500f; //fuerza
     public int hp = 100;
     Rigidbody2D rb;
     void Start()
