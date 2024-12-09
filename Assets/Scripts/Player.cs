@@ -14,10 +14,11 @@ public class Player : MonoBehaviour
     public float tiempo = 5f;
     public GameObject boomerang;
     public GameObject explosivo;
-   
-
     Rigidbody2D rb; //llamar al componente rigibody
-    
+
+    /// <summary>
+    /// Inicializa el componente Rigidbody2D y comienza el efecto del veneno si es necesario.
+    /// </summary>
     void Start() //Este metodo
     {
         rb = GetComponent<Rigidbody2D>();
@@ -25,7 +26,9 @@ public class Player : MonoBehaviour
         StartCoroutine(Veneno());
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Actualiza el estado del jugador en cada fotograma, gestionando movimiento y disparos.
+    /// </summary>
     void Update() //Habla de frames (fotogramas), funciona a 30
     {
         move();
@@ -33,6 +36,10 @@ public class Player : MonoBehaviour
         fireboomerang();
        explosivo1();
     }
+
+    /// <summary>
+    /// Dispara un láser desde la posición del jugador si se presiona la tecla espacio y el intervalo de disparo lo permite.
+    /// </summary>
     void fire()
     {
         fireRateDelta += Time.deltaTime; //Esto es para que despues de 0.5f (medio segundo) te deje disparar
@@ -48,18 +55,14 @@ public class Player : MonoBehaviour
         
 
     }
+
+    /// <summary>
+    /// Gestiona el movimiento del jugador con aceleración controlada y velocidad máxima.
+    /// </summary>
     void move()
     {
-        float inputX = Input.GetAxis("Horizontal"); //Metodo para mover jugador de manera horinzontal, tinen que ser igual de escritos, es un valora entre1 y -1
-        float inputY = Input.GetAxis("Vertical"); //Metodo para mover aol jugador de manera vertical
-
-        //Primera manera de desplazar
-
-        //Vector3 posicion = transform.position; //Vector3 es una clase que viene de unity, transform es un componenete que tiene Unity y position es una unidad de transform
-        //posicion.x = posicion.x + inputX * Time.deltaTime * velocidad; //Time.deltaTime * inputX significa que por cada segundo se mueve una unidad, cuadno se multiplica por velocidad significa que se va a mover otra cantidad de unidades por segundo
-        //posicion.y = posicion.y + inputY * Time.deltaTime * velocidad;
-        //transform.position = posicion;
-
+        float inputX = Input.GetAxis("Horizontal"); 
+        float inputY = Input.GetAxis("Vertical"); 
         rb.AddForce(new Vector2(20 * inputX, 20 * inputY)); //es una aceleracion ya que el Force empuja en x cada fotograma
         //En x
         Vector2 rbVel = rb.velocity;
@@ -95,7 +98,12 @@ public class Player : MonoBehaviour
         }
         rb.velocity = rbVel;
     }
-    
+
+    /// <summary>
+    /// Reduce la salud del jugador cuando recibe daño.
+    /// Si la salud llega a cero, destruye al jugador y activa la condición de derrota en el GameController.
+    /// </summary>
+    /// <param name="damage">Cantidad de daño a aplicar.</param>
     public void hurt(int damage)
     {
         hp -= damage;
@@ -112,7 +120,11 @@ public class Player : MonoBehaviour
             Destroy(gameObject);
         }
     }
-   IEnumerator Veneno()
+
+    /// <summary>
+    /// Aplica daño periódico al jugador si está en contacto con un objeto tóxico.
+    /// </summary>
+    IEnumerator Veneno()
     {
         while (true)
         {
@@ -124,6 +136,11 @@ public class Player : MonoBehaviour
            yield return new WaitForSeconds(tiempo);
         }
     }
+
+    /// <summary>
+    /// Detecta si el jugador entra en contacto con objetos tóxicos.
+    /// </summary>
+    /// <param name="collision">El objeto con el que colisiona el jugador.</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Toxica")
@@ -131,7 +148,11 @@ public class Player : MonoBehaviour
             toxic1 = true;
         }
     }
-   
+
+    /// <summary>
+    /// Detecta si el jugador  sale del area de contacto con objetos tóxicos.
+    /// </summary>
+    /// <param name="collision">El objeto con el que colisiona el jugador.</param>
     private void OnTriggerExit2D(Collider2D collision)
     {
         if(collision.tag == "Toxica")
@@ -139,6 +160,10 @@ public class Player : MonoBehaviour
             toxic1 = false;
         }
     }
+
+    /// <summary>
+    /// Lanza un boomerang si se presiona la tecla 'E'.
+    /// </summary>
     void fireboomerang()
     {
         fireRateDelta += Time.deltaTime; //Esto es para que despues de 0.5f (medio segundo) te deje disparar
@@ -155,6 +180,10 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// Lanza un explosivo si se mantiene presionada la tecla 'Q'.
+    /// </summary>
     void explosivo1()
     {
         fireRateDelta += Time.deltaTime; //Esto es para que despues de 0.5f (medio segundo) te deje disparar
