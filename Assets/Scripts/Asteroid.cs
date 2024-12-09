@@ -5,25 +5,38 @@ using UnityEngine;
 public class Asteroid : MonoBehaviour
 {
     //Comentario prueba
+    //Bruh
     public GameObject explosion;
     public float force = -500f;
     public int hp = 100;
     Rigidbody2D rb;
+
+    /// <summary>
+    /// Método llamado al iniciar el juego o cuando el objeto es activado. 
+    /// Posiciona aleatoriamente el asteroide en el rango de -5 a 5 en el eje Y y aplica una fuerza a la dirección X.
+    /// </summary>
+    /// <remarks>
+    /// Este método también obtiene el componente `Rigidbody2D` para aplicar la física del asteroide.
+    /// </remarks>
     void Start()
     {
 
         Vector3 pos = transform.position; //El vector se transformo en posicion
-        pos.y = Random.Range(-5, 5); //Este codigo hace que se posicione en cualquier lugar dentro del rango
+        pos.y = Random.Range(-5, 5);
         transform.position = pos;
 
         
-        rb = GetComponent<Rigidbody2D>();   //
-        rb.AddForce(new Vector2(force, 0)); //AddForce es la fuerza que se da en x y en Y
-
-       // Destroy(gameObject, 10); //Se van a destruir despues de unos 10 seg
+        rb = GetComponent<Rigidbody2D>(); 
+        rb.AddForce(new Vector2(force, 0));
     }
 
-   
+    /// <summary>
+    /// Método llamado una vez por frame para comprobar si el asteroide ha salido de los límites del juego.
+    /// Si el asteroide ha cruzado el límite en el eje X, se destruye.
+    /// </summary>
+    /// <remarks>
+    /// Este método se asegura de que los asteroides que se alejan del área de juego sean destruidos.
+    /// </remarks>
     void Update()
     {
         //manera de destruir los clones del asteroid
@@ -32,7 +45,15 @@ public class Asteroid : MonoBehaviour
             Destroy(gameObject);
         }   
     }
-    
+
+    /// <summary>
+    /// Método llamado cuando el asteroide entra en contacto con otro collider.
+    /// Si el asteroide colisiona con la nave del jugador, reduce su salud y realiza daño al jugador.
+    /// </summary>
+    /// <param name="collision">El collider con el que el asteroide entra en contacto.</param>
+    /// <remarks>
+    /// Este método detecta la colisión entre el asteroide y el jugador, causando daño al jugador y al propio asteroide.
+    /// </remarks>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
@@ -47,6 +68,14 @@ public class Asteroid : MonoBehaviour
         }
         
     }
+
+    /// <summary>
+    /// Reduce la salud del asteroide cuando recibe daño. Si la salud llega a cero, el asteroide es destruido.
+    /// </summary>
+    /// <param name="damage">La cantidad de daño que recibe el asteroide.</param>
+    /// <remarks>
+    /// Si la salud del asteroide es reducida a cero, se instancia una explosión en su lugar y se destruye el objeto.
+    /// </remarks>
     public void hurt(int damage)
     {
         hp -= damage;
